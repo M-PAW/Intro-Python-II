@@ -1,3 +1,5 @@
+import textwrap
+
 from room import Room
 from player import Player
 
@@ -39,15 +41,49 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-
-new_player = Player(player_name = "Mike", current_room = room['outside'])
+name = input('Enter player name: ')
+new_player = Player(name, current_room = room['outside'])
 
 # Write a loop that:
 #
+while True:
+    # print(f"\n(new_player.current_room.name}\n")
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
+    print(new_player.current_room.description +"\n")
 # * Waits for user input and decides what to do.
-#
+# 
+    command = input("\n Which direction? ").lower()
+    if command == "q":
+        print("Goodbye!")
+        exit()
+    elif command == "n":
+        if new_player.current_room.n_to is not None:
+            new_player.current_room = new_player.current_room.n_to
+        else:
+            print("There is no safe passage!")
+
+    elif command == "s":
+        if new_player.current_room.s_to is not None:
+            new_player.current_room = new_player.current_room.s_to
+        else:
+            print("There is no safe passage!")
+
+    elif command == "e":
+        if new_player.current_room.e_to is not None:
+            new_player.current_room = new_player.current_room.e_to
+        else:
+            print("There is no safe passage!")
+
+    elif command == "w":
+        if new_player.current_room.w_to is not None:
+            new_player.current_room = new_player.current_room.w_to
+        else:
+            print("There is no safe passage!")
+
+    else:
+        print("\n I don't understand your command! \n")
+
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
 #
