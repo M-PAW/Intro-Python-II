@@ -41,21 +41,23 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-name = input('Enter player name: ')
+name = input('Greeting! What is your name? ')
 new_player = Player(name, current_room = room['outside'])
 
 # Write a loop that:
 #
 while True:
+    print(f'\n{new_player.player_name} has arrive at {new_player.current_room}')
+
     # print(f"\n(new_player.current_room.name}\n")
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
     print(new_player.current_room.description +"\n")
 # * Waits for user input and decides what to do.
 # 
-    command = input("\n Which direction? ").lower()
+    command = input("\nWhich direction? ").lower()
     if command == "q":
-        print("Goodbye!")
+        print(f'\nFarewell {new_player.player_name}!')
         exit()
     elif command == "n":
         if new_player.current_room.n_to is not None:
