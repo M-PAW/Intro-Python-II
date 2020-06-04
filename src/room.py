@@ -1,9 +1,10 @@
 # Implement a class to hold room information. This should have name and
 # description attributes.
 class Room():
-    def __init__(self,room_name, description):
+    def __init__(self,room_name, description, booled, **items):
         self.room_name = room_name
         self.description = description
+        self.items = []
         self.n_to = None
         self.s_to = None
         self.e_to = None
@@ -20,3 +21,9 @@ class Room():
         if self.w_to:
             result += f"W: {self.w_to.room_name}\n"
         return result
+
+    def get_item(self):
+        if self.item == []:
+            return f'This room has no items.'
+        else:
+            return f'Room items: {self.items}'
